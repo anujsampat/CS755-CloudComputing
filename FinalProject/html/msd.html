@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>    
+    function ajaxFunction(){
+	$.ajax({
+            type: 'POST',
+            url: 'msd_input.php',
+	    data: $("#getSongs").serialize()
+        })
+        .done(function(data){
+		$('#response').html(data);
+        })
+        .fail(function() {
+            alert( "Posting failed." );
+        });
+    }
+</script>
+
+</head>
+<body>
+<h1>Music Finder &#9836</h1>
+
+<form id="getSongs" action="msd_input.php">
+<p>Run As
+<input type="radio" name="runas" value="demo" checked> Demo
+<input type="radio" name="runas" value="partial"> Partial
+<input type="radio" name="runas" value="full"> Full</p> 
+<hr>
+<table cellspacing="10"><tr>
+<td valign="top" width="175">
+<p>Region</p><br>
+<input type="radio" name="region" value="northamerica"> North America<br> 
+<input type="radio" name="region" value="southamerica"> South America<br>
+<input type="radio" name="region" value="europe"> Europe<br>
+<input type="radio" name="region" value="asia"> Asia<br>
+<input type="radio" name="region" value="all" checked> All<br></td>
+<td>
+<p>Year</p><br>
+<input type="radio" name="year" value="1960-1979"> 1960-1979<br> 
+<input type="radio" name="year" value="1980-1999"> 1980-1999<br> 
+<input type="radio" name="year" value="1999-2014"> 1999-2014<br>
+<input type="radio" name="year" value="all" checked> All<br></td> 
+<td valign="top" width="175">
+<p>Song Tempo</p><br>
+<input type="radio" name="tempo" value="slow"> Slow<br> 
+<input type="radio" name="tempo" value="medium"> Medium<br>
+<input type="radio" name="tempo" value="fast"> Fast<br>
+<input type="radio" name="tempo" value="all" checked> All<br></td>
+<td valign="top" width="175">
+<p>Song Mode</p><br>
+<input type="radio" name="mode" value="major"> Major<br> 
+<input type="radio" name="mode" value="minor"> Minor<br>
+<input type="radio" name="mode" value="all" checked> All<br></td>
+</tr></table>
+<p>Song Key
+<input type="radio" name="songkey" value="0"> C
+<input type="radio" name="songkey" value="1"> C Sharp
+<input type="radio" name="songkey" value="2"> D
+<input type="radio" name="songkey" value="3"> E Flat
+<input type="radio" name="songkey" value="4"> E
+<input type="radio" name="songkey" value="5"> F
+<input type="radio" name="songkey" value="6"> F Sharp
+<input type="radio" name="songkey" value="7"> G
+<input type="radio" name="songkey" value="8"> A Flat
+<input type="radio" name="songkey" value="9"> A
+<input type="radio" name="songkey" value="10"> B Flat
+<input type="radio" name="songkey" value="11"> B
+<input type="radio" name="songkey" value="all" checked> All
+</p>
+</form><br>
+<input type="button" onclick="ajaxFunction();" value="Find songs!" />
+
+<div id="response"></div>
+
+</body>
+</html>
